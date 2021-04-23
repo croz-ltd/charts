@@ -138,7 +138,7 @@ spec:
       {{- if .Values.sentry.web.customCA }}
       - name: custom-ca
         secret:
-{{ toYaml .Values.sentry.web.customCA | indent 10 }}
+          secretName: {{ .Values.sentry.web.customCA.secretName }}
       {{ end }}
       {{- if .Values.sentry.web.priorityClassName }}
       priorityClassName: "{{ .Values.sentry.web.priorityClassName }}"
