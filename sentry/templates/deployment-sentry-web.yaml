@@ -75,7 +75,7 @@ spec:
         {{ end }}
         {{ if .Values.sentry.web.customCA }}
         - name: REQUESTS_CA_BUNDLE
-          value: /usr/local/share/ca-certificates/{{ default "ca.crt" .Values.sentry.web.customCA.item }}
+          value: /etc/pki/ca-trust/custom/{{ default "ca.crt" .Values.sentry.web.customCA.item }}
         {{ end }}
 {{- if .Values.sentry.web.env }}
 {{ toYaml .Values.sentry.web.env | indent 8 }}
@@ -92,7 +92,7 @@ spec:
         {{ end }}
         {{- if .Values.sentry.web.customCA }}
         - name: custom-ca
-          mountPath: /usr/local/share/ca-certificates
+          mountPath: /etc/pki/ca-trust/custom
         {{ end }}
         livenessProbe:
           failureThreshold: 5
